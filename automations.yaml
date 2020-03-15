@@ -1,0 +1,52 @@
+- alias: TandLamporVrum
+  trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data: # S2 knapp i vrum
+      entity_id: zwave.fibaro_system_fgd211_universal_dimmer_500w
+      scene_id: 22
+  action:
+  - service: switch.turn_on
+    entity_id: switch.nexagrey3
+
+- alias: SlackLamporVrum
+  trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data: # S2 knapp i vrum
+      entity_id: zwave.fibaro_system_fgd211_universal_dimmer_500w
+      scene_id: 23
+  action:
+  - service: switch.turn_off
+    entity_id: switch.nexagrey3
+
+- alias: SolNerAltan
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:45:00"
+#  condition:
+#    condition: state
+#    entity_id: all
+#    state: home
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.nexagrey1
+        - switch.nexagrey3
+
+
+- alias: SolUppAltan
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "+00:45:00"
+#  condition:
+#    condition: state
+#    entity_id: all
+#    state: home
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.nexagrey1
+        - switch.nexagrey3

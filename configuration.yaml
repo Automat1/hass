@@ -1,0 +1,71 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+rfxtrx:
+  device: /dev/ttyUSB0
+
+sensor:
+  platform: rfxtrx
+  automatic_add: true
+  devices:
+    085007041b0000f579:
+      name: temp1
+    085007055a0000f479:
+      name: temp2
+    085007065c0000f379:
+      name: temp3
+    0a5201071d010029490369:
+      name: temp4
+    08500708ec0000f579 :
+      name: temp5
+    08500709a30000f579:
+      name: temp6
+    0850070a270000d879:
+      name: temp7
+    0850070b010000f079:
+      name: temp8
+    0850070d0c0000f579:
+      name: temp9
+    0850070e500000f279:
+      name: temp10
+    0850070f1e0000ef79:
+      name: temp11
+    0a520107dd0100f11b0279:
+      name: temp12
+
+
+light:
+  platform: rfxtrx
+  automatic_add: true
+
+switch:
+  platform: rfxtrx
+  automatic_add: true
+  devices:
+    0710011a41010170:
+      name: NexaGrey1
+    0710011c41020170:
+      name: NexaGrey2
+    0710011f41030160:
+      name: NexaGrey3
+    0b11004d0138c13e01010f70:
+      name: NexaWhite1
+    0b11004f0138c13e02010f70:
+      name: NexaWhite2
+    0b1100520138c13e03010f50:
+      name: NexaWhite3
+
+
+
